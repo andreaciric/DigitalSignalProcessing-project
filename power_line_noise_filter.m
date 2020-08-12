@@ -4,23 +4,20 @@ function [bd, ad] = power_line_noise_filter(fs, fc, Aa, Ap)
     Apv = Ap;
     Nfreqz = 15000;
 
-    % odgovarajuce ucestanosti
     fp1 = fc - 2; 
     fp2 = fc + 2;
     fa1 = fc - 0.5; 
     fa2 = fc + 0.5;
 
-    % diskretne granicne ucestanosti propusnog opsega
     Wpd1 = 2*pi*fp1/fs; 
     Wpd2 = 2*pi*fp2/fs;
-    % diskretne granicne ucestanosti nepropusnog opsega
+
     Wad1 = 2*pi*fa1/fs; 
     Wad2 = 2*pi*fa2/fs;
-    
-    % predistorzovane granicne ucestanosti propusnog opsega
+      
     wpa1 = 2*fs*tan(Wpd1/2); 
     wpa2 = 2*fs*tan(Wpd2/2);
-    % predistorzovane granicne ucestanosti nepropusnog opsega
+   
     waa1 = 2*fs*tan(Wad1/2); 
     waa2 = 2*fs*tan(Wad2/2);
 
@@ -30,12 +27,6 @@ function [bd, ad] = power_line_noise_filter(fs, fc, Aa, Ap)
     
     B = wpa2 - wpa1;
 
-    % zbog nelinearne transformacije, nakon predistorzije ucestanosti, nece
-    % biti ispunjen uslov da je
-    % w0 = sqrt(wp1_pred*wp2_pred) = sqrt(wa1_pred*wa2_pred),
-    % zbog toga se uzima da je w0 = sqrt(wp1_pred*wp2_pred) i zadrzava se jos
-    % jedna predistorzovana ucestanost, ili wa1_pred, ili wa2_pred, dok se
-    % preostala ucestanost izracunava na osnovu ostale tri, kao sto je uradjeno
     w0 = sqrt(wpa1*wpa2);
     
     if (w0^2 < waa1*waa2)
@@ -45,9 +36,9 @@ function [bd, ad] = power_line_noise_filter(fs, fc, Aa, Ap)
         end
     end
     
-    wpp = 1; % granicna ucestanost propusnog opsega analognog prototipa
-    wap = B*waa1/(w0^2-waa1^2); % granicna ucestanost nepropusnog opsega analognog prototipa
-
+    wpp = 1;
+    wap = B*waa1/(w0^2-waa1^2); 
+    
     k1 = (Ka*tan(Wad1/2))/(Kb - (tan(Wad1/2))^2);
     k2 = (Ka*tan(Wad2/2))/((tan(Wad2/2))^2 - Kb);
    
@@ -57,7 +48,6 @@ function [bd, ad] = power_line_noise_filter(fs, fc, Aa, Ap)
         k = 1/k1;
     end
        
-    %k = wpp/wap;
     k1 = sqrt(1-k^2);
     q0 = 1/2*(1-sqrt(k1))/(1+sqrt(k1));
     q = q0 + 2*q0^5 + 15*q0^9 + 150*q0^13; 
@@ -73,17 +63,13 @@ while (1)
     baN = k*poly(z);
     aaN = poly(p);
     
-    %Transformacija normalizovanog prototipa u VF 
     [ba,aa] = lp2bs(baN,aaN,w0, B);
     
-    % Diskretizacija bilinearnom transformacijom: nule i polovi analognog -> nule i polove digitalnog
     [bd, ad] = bilinear(ba,aa,fs); 
     
     [hd,wd] = freqz(bd,ad,Nfreqz);
     Hd = abs(hd);
         
-   % provera gabarita
-    
     df = (fs/2)/Nfreqz;
 
     NPOK = 0;
