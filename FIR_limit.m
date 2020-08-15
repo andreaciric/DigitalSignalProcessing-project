@@ -50,7 +50,7 @@ Wc5 = (Wa5+Wp5)/2;
 
 Bt = min([Bt1 Bt2 Bt3]);
 
-M = ceil(2*pi*D/Bt+1)
+M = ceil(2*pi*D/Bt+1);
 N = M-1; 
 
 while 1
@@ -91,5 +91,6 @@ while 1
     end
 
 end
-
+M
+N
 end

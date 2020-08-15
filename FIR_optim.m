@@ -1,6 +1,5 @@
 function [b, N] = FIR_optim(Wp, Wa, Ap, Aa)
 
-% fs = 48000;
 dp = (10^(0.05*Ap)-1 )/(10^(0.05*Ap)+1);
 da = 10^(-0.05*Aa);
 
@@ -22,7 +21,7 @@ Bt = min(B);
 D = (0.01201*log10(dp)*log10(dp)+0.09664*log10(dp)-0.51325)*log10(da)+(0.00203*log10(dp)*log10(dp)-0.57054*log10(dp)-0.44314);
 f = -16.9-14.6*(log10(dp)-log10(da));
 
-M = ceil(2*pi*D/Bt - f*Bt/(2*pi) + 1)
+M = ceil(2*pi*D/Bt - f*Bt/(2*pi) + 1);
 N = M-1;
 
 Hd = [1   1   0   0   1   1   0   0   1   1  0  0];
@@ -58,4 +57,6 @@ while 1
     end
 
 end
+M
+N
 end
