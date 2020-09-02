@@ -130,7 +130,7 @@ while 1
     
     dHa = max(abs(Ha - Ha1));
     
-    if dHa >= 0.02
+    if dHa >= 0.01
         frac_length1 = frac_length1+1;
         bit_length1 = frac_length1+bit_length;
     else
