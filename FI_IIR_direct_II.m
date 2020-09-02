@@ -10,10 +10,6 @@ FixedPointAttributes = fimath( 'RoundingMethod', 'Floor', 'OverflowAction', 'Wra
         'ProductMode', 'SpecifyPrecision', 'ProductWordLength', fi_params.OUT_SIGNAL_BITLENGTH , 'ProductFractionLength', fi_params.OUT_SIGNAL_FRAC, ...
         'SumMode', 'SpecifyPrecision', 'SumWordLength', fi_params.OUT_SIGNAL_BITLENGTH, 'SumFractionLength', fi_params.OUT_SIGNAL_FRAC ) ;
     
-% delay_line = fi( zeros(N,1), x.Signed, x.WordLength, x.FractionLength, FixedPointAttributes); 
-% y = fi(zeros(1,length(x)), true, fi_params.OUT_SIGNAL_BITLENGTH, fi_params.OUT_SIGNAL_FRAC, FixedPointAttributes);
-% temp = fi(zeros(1, length(x)), true, fi_params.OUT_SIGNAL_BITLENGTH, fi_params.OUT_SIGNAL_FRAC,  FixedPointAttributes);
-
 delay_line = fi( zeros(N, 1), x.Signed, x.WordLength, x.FractionLength, x.fimath);
 y = fi(zeros(1, length(x)), true, fi_params.OUT_SIGNAL_BITLENGTH, fi_params.OUT_SIGNAL_FRAC, x.fimath);
 temp = fi(zeros(1, length(x)), true, fi_params.OUT_SIGNAL_BITLENGTH, fi_params.OUT_SIGNAL_FRAC, x.fimath);
