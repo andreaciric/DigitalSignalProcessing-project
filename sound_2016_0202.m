@@ -105,8 +105,8 @@ title('FIR filter: optimization method -> impulse response'), grid
 xlabel('n');
 xlim([0 N]);
 
-savefig('FIR filter optimization method impulse response')
-print('FIR filter optimization method impulse response','-dsvg','-r0')
+% savefig('FIR filter optimization method impulse response')
+% print('FIR filter optimization method impulse response','-dsvg','-r0')
 
 figure;
 stem(n, h);
@@ -114,8 +114,8 @@ title('FIR filter: optimization method -> impulse response'), grid
 xlabel('n');
 xlim([15*(N+1)/32 17*(N+1)/32]);
 
-savefig('FIR filter optimization method impulse response zoom')
-print('FIR filter optimization method impulse response zoom','-dsvg','-r0')
+% savefig('FIR filter optimization method impulse response zoom')
+% print('FIR filter optimization method impulse response zoom','-dsvg','-r0')
 
 figure;
 plot(w, 20*log10(Ha));
@@ -146,8 +146,8 @@ line(x_g18, 20*log10(y_g18), 'Color', 'r');
 line(x_g19, 20*log10(y_g19), 'Color', 'r');
 hold off
 
-savefig('FIR filter optimization method amplitude')
-print('FIR filter optimization method amplitude','-dsvg','-r0')
+% savefig('FIR filter optimization method amplitude')
+% print('FIR filter optimization method amplitude','-dsvg','-r0')
 
 figure;
 plot(w, Hp); 
@@ -156,8 +156,8 @@ axis([0 pi min(Hp)-0.1 max(Hp)+0.1])
 ylabel('Phase [rad]');
 xlabel('W');
 
-savefig('FIR filter optimization method phase')
-print('FIR filter optimization method phase','-dsvg','-r0')
+% savefig('FIR filter optimization method phase')
+% print('FIR filter optimization method phase','-dsvg','-r0')
 
 figure;
 plot(w*fs/2/pi, Hp); 
@@ -166,8 +166,8 @@ ylabel('Phase [rad]');
 xlabel('Frequency [Hz]');
 
 
-savefig('FIR filter optimization method phase2')
-print('FIR filter optimization method phase2','-dsvg','-r0')
+% savefig('FIR filter optimization method phase2')
+% print('FIR filter optimization method phase2','-dsvg','-r0')
 
 audio_filtered1 = filter(h, 1, audio);
 
@@ -186,11 +186,11 @@ fig.YAxis.TickLabelFormat = '%d Hz';
 fig.YMinorTick = 'on';
 ylim([0 16000]);
 
-savefig('FIR filter optimization method spectrogram')
-print('FIR filter optimization method spectrogram','-dsvg','-r0')
+% savefig('FIR filter optimization method spectrogram')
+% print('FIR filter optimization method spectrogram','-dsvg','-r0')
 
 
-audiowrite('out_signal1_2015_0202.wav', audio_filtered1, fs);
+audiowrite('out_signal1_2016_0202.wav', audio_filtered1, fs);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -208,8 +208,8 @@ title('FIR filter: limited impulse response method -> impulse response'), grid
 xlabel('n');
 xlim([0 N]);
 
-savefig('FIR filter limited impulse response method impulse response')
-print('FIR filter limited impulse response method impulse response','-dsvg','-r0')
+% savefig('FIR filter limited impulse response method impulse response')
+% print('FIR filter limited impulse response method impulse response','-dsvg','-r0')
 
 figure;
 stem(n, h);
@@ -217,8 +217,8 @@ title('FIR filter: limited impulse response method -> impulse response'), grid
 xlabel('n');
 xlim([15*(N+1)/32 17*(N+1)/32]);
 
-savefig('FIR filter limited impulse response method impulse response zoom')
-print('FIR filter limited impulse response method impulse response zoom','-dsvg','-r0')
+% savefig('FIR filter limited impulse response method impulse response zoom')
+% print('FIR filter limited impulse response method impulse response zoom','-dsvg','-r0')
 
 figure;
 plot(w, 20*log10(Ha));
@@ -249,8 +249,8 @@ line(x_g18, 20*log10(y_g18), 'Color', 'r');
 line(x_g19, 20*log10(y_g19), 'Color', 'r');
 hold off
 
-savefig('FIR filter limited impulse response method amplitude')
-print('FIR filter limited impulse response method amplitude','-dsvg','-r0')
+% savefig('FIR filter limited impulse response method amplitude')
+% print('FIR filter limited impulse response method amplitude','-dsvg','-r0')
 
 figure;
 plot(w, Hp); 
@@ -259,8 +259,8 @@ axis([0 pi min(Hp)-0.1 max(Hp)+0.1])
 ylabel('Phase [rad]');
 xlabel('W');
 
-savefig('FIR filter limited impulse response method phase')
-print('FIR filter limited impulse response method phase','-dsvg','-r0')
+% savefig('FIR filter limited impulse response method phase')
+% print('FIR filter limited impulse response method phase','-dsvg','-r0')
 
 figure;
 plot(w*fs/2/pi, Hp); 
@@ -268,8 +268,8 @@ title('FIR filter: limited impulse response method -> phase filter characteristi
 ylabel('Phase [rad]');
 xlabel('Frequency [Hz]');
 
-savefig('FIR filter limited impulse response method phase2')
-print('FIR filter limited impulse response method phase2','-dsvg','-r0')
+% savefig('FIR filter limited impulse response method phase2')
+% print('FIR filter limited impulse response method phase2','-dsvg','-r0')
 
 audio_filtered2 = filter(h, 1, audio);
 
@@ -288,7 +288,7 @@ fig.YAxis.TickLabelFormat = '%d Hz';
 fig.YMinorTick = 'on';
 ylim([0 16000]);
 
-savefig('FIR filter limited impulse response method spectrogram')
-print('FIR filter limited impulse response method spectrogram','-dsvg','-r0')
+% savefig('FIR filter limited impulse response method spectrogram')
+% print('FIR filter limited impulse response method spectrogram','-dsvg','-r0')
 
 audiowrite('out_signal2_2015_0202.wav', audio_filtered2, fs);
